@@ -1,5 +1,6 @@
 :root {
   --grey-borders: rgb(210, 209, 209);
+  --grey-bg: rgb(242, 242, 242);
 }
 
 html,
@@ -8,6 +9,14 @@ body {
   margin: 0;
   padding: 0;
 }
+.app {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 1fr auto;
+  width: 100vw;
+}
+
+/* header component styling */
 
 header {
   display: flex;
@@ -15,6 +24,7 @@ header {
   align-items: center;
   padding: 12px;
   border-bottom: 2px solid var(--grey-borders);
+  grid-column: 1/3;
 }
 
 h1 {
@@ -22,10 +32,6 @@ h1 {
   margin: 0;
 }
 
-svg {
-  width: 100%;
-  height: 100%;
-}
 .logo {
   height: 46px;
   width: 46px;
@@ -41,5 +47,48 @@ header > button {
 }
 
 header > button:hover {
+  background-color: #b9b9b9;
+}
+
+/* main component styling */
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 800px;
+  width: 75vw;
+  background-color: var(--grey-bg);
+}
+
+aside {
+  width: 100%;
+  height: 800px;
+  border-right: 2px solid var(--grey-borders);
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+.edit-btn {
+  justify-self: end;
+  grid-column: 2/3;
+  writing-mode: vertical-lr;
+  border: none;
+  padding: 0px 10px;
+  font-size: 18px;
+  background-color: var(--grey-bg);
+  transition: transform 300ms 0s ease;
+  height: fit-content;
+  align-self: center;
+}
+.edit-btn.close {
+  transform: rotate(180deg);
+}
+.edit-btn > svg {
+  width: 36px;
+  height: 36px;
+  border-radius: 30px;
+}
+.edit-btn > svg:hover {
   background-color: #b9b9b9;
 }
