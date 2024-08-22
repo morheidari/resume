@@ -10,8 +10,9 @@ export default function SideBar(){
         else return 'close'
     }
     return(
-        <><aside id="edit-side-bar">
-        <button className={`edit-btn + ${returnClass(isOpen)}`} onClick={onClick}><ArrowIcon></ArrowIcon></button>
+        <><aside id="edit-side-bar" className={returnClass(isOpen)}>
+            <div className={`edit-panel ${returnClass(isOpen)}`}></div>
+        <button className={`edit-btn  ${returnClass(isOpen)}`} onClick={onClick}><ArrowIcon></ArrowIcon></button>
         </aside>
         </>
     )

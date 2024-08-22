@@ -8,12 +8,13 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  font-family: Roboto;
 }
 .app {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: auto 1fr;
   grid-template-rows: 1fr auto;
-  width: 100vw;
+  box-sizing: border-box;
 }
 
 /* header component styling */
@@ -57,38 +58,51 @@ main {
   justify-content: center;
   align-items: center;
   height: 800px;
-  width: 75vw;
   background-color: var(--grey-bg);
 }
 
+/* sidebar component styling */
 aside {
-  width: 100%;
+  width: max-content;
   height: 800px;
   border-right: 2px solid var(--grey-borders);
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto max-content;
+  box-sizing: border-box;
+  position: relative;
 }
 
 .edit-btn {
   justify-self: end;
   grid-column: 2/3;
-  writing-mode: vertical-lr;
   border: none;
   padding: 0px 10px;
   font-size: 18px;
   background-color: var(--grey-bg);
-  transition: transform 300ms 0s ease;
-  height: fit-content;
-  align-self: center;
+  width: 60px;
+  transition: margin-left 500ms ease-in;
 }
+
 .edit-btn.close {
-  transform: rotate(180deg);
+  margin-left: 0;
 }
 .edit-btn > svg {
   width: 36px;
   height: 36px;
   border-radius: 30px;
+  transition: transform 200ms 0s ease;
 }
-.edit-btn > svg:hover {
-  background-color: #b9b9b9;
+.edit-btn.close > svg {
+  transform: rotate(180deg);
+}
+
+.edit-panel {
+  width: 300px;
+  height: 100%;
+  grid-column: 1/2;
+  transition: all 0.5s ease-in;
+}
+
+.edit-panel.close {
+  width: 0;
 }
