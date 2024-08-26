@@ -48,7 +48,7 @@ export default function Resume({personalInfo,summary,educations,experiences,cont
                 </div>
                 <div className="container right">
                     <div className="summary">
-                        <h2 className="profesional-summary">Profesional summary</h2>
+                        <h2 className="professional-summary">Professional summary</h2>
                         <p className="summary-text">{summary}</p>
                     </div>
                     <div className="experiences">
