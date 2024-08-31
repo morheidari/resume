@@ -244,7 +244,6 @@ li > div {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px;
 }
 .title-extention > button {
   background-color: #fff;
@@ -263,8 +262,52 @@ li > div {
 }
 
 .edit-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   border-bottom: 2px solid var(--grey-borders);
+  padding: 16px;
 }
+
+input {
+  position: relative;
+  min-width: 90%;
+  height: 25px;
+  border: 1px solid var(--grey-borders);
+  padding: 6px;
+  border-radius: 3px;
+  background: transparent;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+.input {
+  position: relative;
+  width: 100%;
+}
+
+label {
+  position: absolute;
+  background-color: #fff;
+  top: 50%;
+  left: 8%;
+  transform: translate(0, -50%);
+  padding: 4px;
+  font-size: 14px;
+  transition: transform 200ms 0s ease;
+  z-index: 1;
+}
+
+input:focus-visible + label {
+  transform: translate(-10%, -130%) scale(0.8);
+}
+
+/* print style */
 
 @media print {
   header,
