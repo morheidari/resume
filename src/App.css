@@ -1,6 +1,7 @@
 :root {
   --grey-borders: rgb(209, 210, 210);
   --grey-bg: rgba(238, 238, 238);
+  --blue: rgb(0, 47, 255);
 }
 
 html,
@@ -173,7 +174,7 @@ li {
   bottom: 0px;
   height: 1px;
   width: 50px;
-  border-bottom: 2px solid rgb(0, 136, 255);
+  border-bottom: 2px solid var(--blue);
 }
 
 .container {
@@ -212,7 +213,7 @@ li {
   font-weight: 700;
 }
 
-li > div {
+.resume-list > div {
   min-width: 60px;
 }
 
@@ -271,12 +272,13 @@ li > div {
 
 input {
   position: relative;
-  min-width: 90%;
-  height: 25px;
+  min-width: 100%;
+  height: 35px;
   border: 1px solid var(--grey-borders);
   padding: 6px;
   border-radius: 3px;
   background: transparent;
+  box-sizing: border-box;
 }
 
 form {
@@ -295,18 +297,97 @@ label {
   position: absolute;
   background-color: #fff;
   top: 50%;
-  left: 8%;
+  left: 1px;
   transform: translate(0, -50%);
   padding: 4px;
   font-size: 14px;
   transition: transform 200ms 0s ease;
   z-index: 1;
+  padding-left: 10%;
+  width: 100px;
 }
 
-input:focus-visible + label {
+input:focus-visible + label,
+label.active {
   transform: translate(-10%, -130%) scale(0.8);
+  padding-left: 4px;
+  left: 8%;
+  width: auto;
 }
 
+textarea {
+  max-width: 100%;
+  min-width: 100%;
+  min-height: 150px;
+  padding: 6px;
+  box-sizing: border-box;
+}
+
+li.exp-history {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr 1fr;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  gap: 12px;
+  border: var(--grey-borders) solid 1px;
+  padding: 8px 10px;
+  background-color: var(--grey-bg);
+}
+.exp-history > div {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: flex;
+  height: 20px;
+}
+.history-btn {
+  margin-left: auto;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+}
+.history-btn > button > svg {
+  width: 20px;
+  height: 20px;
+}
+
+.history-btn > button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  height: 20px;
+}
+
+.add-more {
+  background-color: transparent;
+  border: none;
+  color: var(--blue);
+  font-weight: 700;
+}
+ul {
+  padding: 0;
+}
+ul.exps {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.exp-input-btns {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 30px;
+}
+
+.exp-input-btns > button {
+  background-color: var(--grey-bg);
+  border: none;
+  border-radius: 5px;
+  padding: 6px;
+  width: 65px;
+}
 /* print style */
 
 @media print {
