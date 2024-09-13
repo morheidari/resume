@@ -38,10 +38,10 @@ function AddExp(prop){
 // experiences history
 function ExpHistory(prop){
     function MakeList(exp){
-        return(<li key={exp.id} className='exp-history'>
-            <div className="exp-job-title">{exp.jobTitle}</div>
-            <div className="exp-company">{exp.company}</div>
-            <div className="exp-date">{exp.from}-{exp.to}</div>
+        return(<li key={exp.id} className='show-hisotry exp-history'>
+            <div className="exp-job-title" ><div>{exp.jobTitle}</div><span>{exp.jobTitle}</span></div>
+            <div className="exp-company"><div>{exp.company}</div><span>{exp.company}</span></div>
+            <div className="exp-date"><div>{exp.from}&nbsp;to&nbsp;{exp.to}</div><span>{exp.from}&nbsp;to&nbsp;{exp.to}</span></div>
             <div className="history-btn">
             <button onClick={()=>prop.openEditExp(exp)}><Edit></Edit></button>
             <button onClick={()=>prop.deleteExp(exp)}><Delete></Delete></button>
@@ -115,6 +115,100 @@ export function EditExperiences({experiences, addExp, editExp, deleteExp}){
 
 
 // educations input
+// education history
+function EduHistory(prop){
+    function MakeList(edu){
+        return(<li key={edu.id} className='edu-history'>
+            <div className="edu-university"><div>{edu.university}</div><span>{edu.university}</span></div>
+            <div className="edu-degree"><div>{edu.degree}</div><span>{edu.degree}</span></div>
+            <div className="edu-date"><div>{edu.from}&nbsp;to&nbsp;{edu.to}</div><span>{edu.from}&nbsp;to&nbsp;{edu.to}</span></div>
+            <div className="history-btn">
+            <button onClick={()=>prop.openEditEdu(edu)}><Edit></Edit></button>
+            <button onClick={()=>prop.deleteEdu(edu)}><Delete></Delete></button>
+            </div>
+        </li>)
+    }
+    return(<div className="history edu-history">
+        <ul className="edus">{prop.educations.map(edu=>MakeList(edu))}</ul>
+    </div>)
+}
+
+// edit education
+
+function EditEdu(prop){
+    return(<Form>
+        <Input type='text' id='university'value={prop.university} onChange={prop.onChange} placeholder='University'></Input>
+        <Input type='text' id='degree'value={prop.degree} onChange={prop.onChange} placeholder='Degree'></Input>
+        <Input type='month' id='from' value={prop.from} onChange={prop.onChange} placeholder='from'></Input>
+        <Input type='month' id='to' value={prop.to} onChange={prop.onChange} placeholder='to'></Input>
+        <div className="edu-input-btns">
+            <button onClick={prop.editEdu}>Edit</button>
+            <button onClick={prop.cancel}>Cancel</button>
+            </div>
+    </Form>)
+}
+
+// add education
+function AddEdu(prop){
+    return(<Form>
+        <Input type='text' id='university'value={prop.university} onChange={prop.onChange} placeholder='University'></Input>
+        <Input type='text' id='degree'value={prop.degree} onChange={prop.onChange} placeholder='Degree'></Input>
+        <Input type='month' id='from' value={prop.from} onChange={prop.onChange} placeholder="From"></Input>
+        <Input type='month' id='to' value={prop.to} onChange={prop.onChange} placeholder='To'></Input>
+        <div className="edu-input-btns">
+            <button onClick={prop.add}>Add</button>
+            <button onClick={prop.cancel}>Cancel</button>
+            </div>
+    </Form>)
+}
+
+
+// edit educations component
+export function EditEducations({educations, addEdu, editEdu, deleteEdu}){
+    const emptyEdu = {university:"", degree:"", from:"", to:""}
+    const [page, changePage] = useState('history')
+    const [education, changeEducation] = useState(emptyEdu)
+    function educationOnChange(e){
+        let copy = {...education}
+        const id = e.target.id;
+        copy[id] = e.target.value;
+        changeEducation(copy);
+    }
+    function cancel(){
+        changeEducation(emptyEdu)
+        changePage('history')
+    }
+    function openEditEdu(edu){
+        changePage('edit')
+        changeEducation(edu)
+    }
+    function add(){
+        let edu = {id:uuidv7(),...education}
+        addEdu(edu);
+        cancel()
+    }
+    function edit(){
+        editEdu(education);
+        cancel()
+    }
+    if(page==='history'){
+        return(<>
+        <EduHistory educations={educations} deleteEdu={deleteEdu} openEditEdu={openEditEdu}></EduHistory>
+        <button onClick={()=>changePage('add')} className='add-more'>+ Add One More</button>
+        </>)
+    }else if(page==='add'){
+        return(<>
+        <AddEdu {...education} onChange={educationOnChange} add={add} cancel={cancel}></AddEdu>
+        </>)
+    }else if(page==='edit'){
+        return(<>
+        <EditEdu {...education} onChange={educationOnChange} editEdu={edit} cancel={cancel}></EditEdu>
+        </>)
+    }
+}
+
+
+
 
 
 // skills input

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { PersonalInformationInput, ProSummary, EditExperiences } from "./information-panels"
+import { PersonalInformationInput, ProSummary, EditExperiences, EditEducations } from "./information-panels"
 import { uuidv7 } from "uuidv7"
 
 
@@ -7,6 +7,7 @@ export default function SideBar(){
     const [isOpen, ChangeOpennes] = useState(true)
     const [personalInfo, changePersonalInfo] = useState({fullName:"", jobTitle:"", proSummary:""})
     const [experiences, changeExperiences] = useState([{id:uuidv7(),jobTitle:"mo", company:"re", from:"2024-10", to:"2024-12",description:"hi"},{id:uuidv7(),jobTitle:"morrrrrrrrrrrrrrrrrrrrrrrr", company:"rerrrrrrrrrrrrrr", from:"2024-10", to:"2024-12",description:"hi"}])
+    const [educations, changeEducations] = useState([{id:uuidv7(),univeristy:'Aut', degree:'Bsc of Aerospace engineering', from:'2018-10', to:'2023-10'}]);
     function onChange(e){
         const id = e.target.id;
         const copy = {...personalInfo};
@@ -40,6 +41,26 @@ export default function SideBar(){
         )
         changeExperiences(copy)
     }
+    function addEdu(edu){
+        let copy = [...educations];
+        copy.push(edu)
+        changeEducations(copy)
+    }
+
+    function deleteEdu(edu){
+        let copy = [...educations];
+        copy = copy.filter(e=>e.id!==edu.id)
+        changeEducations(copy)
+    }
+    function editEdu(edu){
+        let copy = [...educations];
+        copy = copy.map(e=>{
+            if(e.id!==edu.id) return e
+            else return edu;
+        }
+        )
+        changeEducations(copy)
+    }
     return(
         <><aside id="edit-side-bar" className={returnClass(isOpen)}>
             <div className={`edit-panel ${returnClass(isOpen)}`}>
@@ -47,6 +68,7 @@ export default function SideBar(){
                 <EditSection title='Personal information'><PersonalInformationInput fullName={personalInfo.fullName} jobTitle={personalInfo.jobTitle} onChange={onChange}></PersonalInformationInput></EditSection>
                 <EditSection title="Professional Summary"><ProSummary proSummary={personalInfo.proSummary} onChange={onChange}></ProSummary></EditSection>
                 <EditSection title="Experiences"><EditExperiences experiences={experiences} addExp={addExp} deleteExp={deleteExp} editExp={editExp}></EditExperiences></EditSection>
+                <EditSection title='Educations'><EditEducations educations={educations} addEdu={addEdu} deleteEdu={deleteEdu} editEdu={editEdu}></EditEducations></EditSection>
                 </div>
         <button className={`edit-btn  ${returnClass(isOpen)}`} onClick={onClick}><ArrowIcon></ArrowIcon></button>
         </aside>
