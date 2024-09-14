@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { PersonalInformationInput, ProSummary, EditExperiences, EditEducations } from "./information-panels"
+import { PersonalInformationInput, ProSummary, EditExperiences, EditEducations, EditSkills, EditContact } from "./information-panels"
 import { uuidv7 } from "uuidv7"
 
 
@@ -7,7 +7,15 @@ export default function SideBar(){
     const [isOpen, ChangeOpennes] = useState(true)
     const [personalInfo, changePersonalInfo] = useState({fullName:"", jobTitle:"", proSummary:""})
     const [experiences, changeExperiences] = useState([{id:uuidv7(),jobTitle:"mo", company:"re", from:"2024-10", to:"2024-12",description:"hi"},{id:uuidv7(),jobTitle:"morrrrrrrrrrrrrrrrrrrrrrrr", company:"rerrrrrrrrrrrrrr", from:"2024-10", to:"2024-12",description:"hi"}])
-    const [educations, changeEducations] = useState([{id:uuidv7(),univeristy:'Aut', degree:'Bsc of Aerospace engineering', from:'2018-10', to:'2023-10'}]);
+    const [educations, changeEducations] = useState([{id:uuidv7(),university:'Aut', degree:'Bsc of Aerospace engineering', from:'2018-10', to:'2023-10'}]);
+    const [skills, changeSkills] = useState([{id:uuidv7(),skill:'react.js'}])
+    const [contact, changeContact] = useState({email:"moreh412000@gmail.com", phone:"09190291589", linkedIn:"mohammadreza-heidari00", github:"", website:""})
+    function contactOnChange(e){
+        const id= e.target.id;
+        const copy = {...contact}
+        copy[id] = e.target.value;
+        changeContact(copy);
+    }
     function onChange(e){
         const id = e.target.id;
         const copy = {...personalInfo};
@@ -61,6 +69,15 @@ export default function SideBar(){
         )
         changeEducations(copy)
     }
+    function addSkill(skill){
+        const copy = [...skills];
+        copy.push(skill);
+        changeSkills(copy)
+    }
+    function deleteSkill(skill){
+        const copy = skills.filter(s=> s.id!==skill.id)
+        changeSkills(copy)
+    }
     return(
         <><aside id="edit-side-bar" className={returnClass(isOpen)}>
             <div className={`edit-panel ${returnClass(isOpen)}`}>
@@ -69,6 +86,8 @@ export default function SideBar(){
                 <EditSection title="Professional Summary"><ProSummary proSummary={personalInfo.proSummary} onChange={onChange}></ProSummary></EditSection>
                 <EditSection title="Experiences"><EditExperiences experiences={experiences} addExp={addExp} deleteExp={deleteExp} editExp={editExp}></EditExperiences></EditSection>
                 <EditSection title='Educations'><EditEducations educations={educations} addEdu={addEdu} deleteEdu={deleteEdu} editEdu={editEdu}></EditEducations></EditSection>
+                <EditSection title='Skills'><EditSkills skills={skills} addSkill={addSkill} deleteSkill={deleteSkill}></EditSkills></EditSection>
+                <EditSection title="Contact"><EditContact {...contact} onChange={contactOnChange}></EditContact></EditSection>
                 </div>
         <button className={`edit-btn  ${returnClass(isOpen)}`} onClick={onClick}><ArrowIcon></ArrowIcon></button>
         </aside>

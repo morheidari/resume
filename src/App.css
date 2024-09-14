@@ -326,7 +326,7 @@ textarea {
 li.exp-history,
 li.edu-history {
   display: grid;
-  grid-template-columns: 1fr 1fr 2fr 1fr;
+  grid-template-columns: 3fr 2fr 2fr 2fr;
   align-items: center;
   justify-content: center;
   font-size: 16px;
@@ -334,18 +334,47 @@ li.edu-history {
   border: var(--grey-borders) solid 1px;
   padding: 8px 10px;
   background-color: var(--grey-bg);
+  border-radius: 3px;
+  border: none;
 }
 .exp-history > div,
 .edu-history > div {
   text-overflow: ellipsis;
   overflow: hidden;
   display: flex;
-  height: 20px;
+  height: 18px;
 }
 .exp-history > div > div,
 .edu-history > div > div {
   max-width: 100%;
   width: 100%;
+  font-size: 14px;
+}
+.edu-titles {
+  display: grid;
+  grid-template-columns: 3fr 2fr 2fr 2fr;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  gap: 12px;
+  border: var(--grey-borders) solid 1px;
+  padding: 8px 10px;
+  background-color: var(--grey-bg);
+  border-radius: 3px;
+  border: none;
+}
+.exp-titles {
+  display: grid;
+  grid-template-columns: 3fr 2fr 2fr 2fr;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  gap: 12px;
+  border: var(--grey-borders) solid 1px;
+  padding: 8px 10px;
+  background-color: var(--grey-bg);
+  border-radius: 3px;
+  border: none;
 }
 .history-btn {
   margin-left: auto;
@@ -417,6 +446,55 @@ ul.edus {
   font-size: 12px;
   width: max-content;
   border-radius: 6px;
+}
+
+/* skill section style */
+.skill-icon {
+  width: 20px;
+  height: 20px;
+}
+.skill-box {
+  display: flex;
+  gap: 8px;
+  background: var(--grey-bg);
+  padding: 6px 10px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  font-size: 14px;
+}
+.delete-skill > button {
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+.skills-list {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.add-skill {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+}
+
+.add-skill > button {
+  max-width: 30px;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 3px;
+  padding: 4px;
+  position: absolute;
+  right: 3%;
+  top: 50%;
 }
 /* print style */
 
