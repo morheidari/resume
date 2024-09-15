@@ -258,7 +258,7 @@ export function EditSkills({skills,addSkill,deleteSkill}){
 // contact input
 export function EditContact(prop){
     return(<Form>
-    <Input type="email" id="emai" value={prop.email} placeholder='Email' onChange={prop.onChange}></Input>
+    <Input type="email" id="email" value={prop.email} placeholder='Email' onChange={prop.onChange}></Input>
     <Input type="phone" id="phone" value={prop.phone} placeholder="Phone" onChange={prop.onChange}></Input>
     <Input type="url" id="linkedIn" value={prop.linkedIn} placeholder="LinkedIn" onChange={prop.onChange}></Input>
     <Input type="url" id="github" value={prop.github} placeholder='Github' onChange={prop.onChange}></Input>
