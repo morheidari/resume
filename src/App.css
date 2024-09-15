@@ -199,6 +199,7 @@ li {
   display: grid;
   grid-template-columns: auto auto;
   gap: 8px;
+  text-wrap: nowrap;
 }
 .list-of-skills > li {
   list-style-type: square;

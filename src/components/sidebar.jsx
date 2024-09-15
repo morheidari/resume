@@ -1,82 +1,16 @@
 import { useState } from "react"
 import { PersonalInformationInput, ProSummary, EditExperiences, EditEducations, EditSkills, EditContact } from "./information-panels"
-import { uuidv7 } from "uuidv7"
 
 
-export default function SideBar(){
+
+export default function SideBar({personalInfo, experiences, educations, skills, contact, onChange, contactOnChange, deleteEdu, deleteSkill, deleteExp, addEdu, addExp, addSkill, editEdu, editExp}){
     const [isOpen, ChangeOpennes] = useState(true)
-    const [personalInfo, changePersonalInfo] = useState({fullName:"", jobTitle:"", proSummary:""})
-    const [experiences, changeExperiences] = useState([{id:uuidv7(),jobTitle:"mo", company:"re", from:"2024-10", to:"2024-12",description:"hi"},{id:uuidv7(),jobTitle:"morrrrrrrrrrrrrrrrrrrrrrrr", company:"rerrrrrrrrrrrrrr", from:"2024-10", to:"2024-12",description:"hi"}])
-    const [educations, changeEducations] = useState([{id:uuidv7(),university:'Aut', degree:'Bsc of Aerospace engineering', from:'2018-10', to:'2023-10'}]);
-    const [skills, changeSkills] = useState([{id:uuidv7(),skill:'react.js'}])
-    const [contact, changeContact] = useState({email:"moreh412000@gmail.com", phone:"09190291589", linkedIn:"mohammadreza-heidari00", github:"", website:""})
-    function contactOnChange(e){
-        const id= e.target.id;
-        const copy = {...contact}
-        copy[id] = e.target.value;
-        changeContact(copy);
-    }
-    function onChange(e){
-        const id = e.target.id;
-        const copy = {...personalInfo};
-        copy[id] = e.target.value;
-        changePersonalInfo(copy)
-    }
     function onClick(){
         ChangeOpennes(!isOpen)
     }
     function returnClass(isOpen){
         if(isOpen)return 'open'
         else return 'close'
-    }
-    function addExp(exp){
-        let copy = [...experiences];
-        copy.push(exp)
-        changeExperiences(copy)
-    }
-
-    function deleteExp(exp){
-        let copy = [...experiences];
-        copy = copy.filter(e=>e.id!==exp.id)
-        changeExperiences(copy)
-    }
-    function editExp(exp){
-        let copy = [...experiences];
-        copy = copy.map(e=>{
-            if(e.id!==exp.id) return e
-            else return exp;
-        }
-        )
-        changeExperiences(copy)
-    }
-    function addEdu(edu){
-        let copy = [...educations];
-        copy.push(edu)
-        changeEducations(copy)
-    }
-
-    function deleteEdu(edu){
-        let copy = [...educations];
-        copy = copy.filter(e=>e.id!==edu.id)
-        changeEducations(copy)
-    }
-    function editEdu(edu){
-        let copy = [...educations];
-        copy = copy.map(e=>{
-            if(e.id!==edu.id) return e
-            else return edu;
-        }
-        )
-        changeEducations(copy)
-    }
-    function addSkill(skill){
-        const copy = [...skills];
-        copy.push(skill);
-        changeSkills(copy)
-    }
-    function deleteSkill(skill){
-        const copy = skills.filter(s=> s.id!==skill.id)
-        changeSkills(copy)
     }
     return(
         <><aside id="edit-side-bar" className={returnClass(isOpen)}>

@@ -276,24 +276,12 @@ function Input(prop){
     }
     function returnLabel(){
         if(prop.placeholder){
-            return(<label for={prop.id} className={returnClass()}>{prop.placeholder}</label>)
+            return(<label htmlFor={prop.id} className={returnClass()}>{prop.placeholder}</label>)
         }else return null
     }
 return(<div className='input'>
 <input value={prop.value} onChange={prop.onChange} type={prop.type} id={prop.id}></input>
 {returnLabel()}
-</div>)
-}
-
-
-function TextArea(prop){
-    function returnClass(){
-        if(prop.value.length>0) return 'active'
-        else return null
-    }
-return(<div className='input'>
-<textarea value={prop.value} onChange={prop.onChange} id={prop.id}></textarea>
-<label for={prop.id} className={returnClass()}>{prop.placeholder}</label>
 </div>)
 }
 
