@@ -15,9 +15,9 @@ body {
 }
 .app {
   display: grid;
-  grid-template-columns: auto 1fr;
   grid-template-rows: 1fr auto;
   box-sizing: border-box;
+  position: relative;
 }
 
 /* header component styling */
@@ -28,7 +28,13 @@ header {
   align-items: center;
   padding: 12px;
   border-bottom: 2px solid var(--grey-borders);
-  grid-column: 1/3;
+  grid-column: 1/2;
+  height: 68px;
+  box-sizing: border-box;
+  position: fixed;
+  z-index: 3;
+  width: 100%;
+  background-color: #fff;
 }
 
 header > h1 {
@@ -52,7 +58,12 @@ header > button {
 header > button:hover {
   background-color: #b9b9b9;
 }
-
+/* app body styling */
+.app-body {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
 /* main component styling */
 
 main {
@@ -61,16 +72,29 @@ main {
   align-items: center;
   background-color: var(--grey-bg);
   z-index: 1;
+  flex: 1 1 auto;
+  margin-left: 300px;
+  transition: margin 300ms ease-in;
+  margin-top: 68px;
+  width: calc(100% - 360px);
 }
 
 /* sidebar component styling */
 aside {
-  width: max-content;
   border-right: 2px solid var(--grey-borders);
   display: grid;
   grid-template-columns: auto max-content;
   box-sizing: border-box;
-  position: relative;
+  transition: transform 300ms ease-in;
+  position: fixed;
+  z-index: 3;
+  top: 68px;
+  left: 0px;
+  background-color: #fff;
+  height: calc(100vh - 68px);
+}
+aside.close {
+  transform: translateX(-300px);
 }
 
 .edit-btn {
@@ -81,12 +105,8 @@ aside {
   font-size: 18px;
   background-color: var(--grey-bg);
   width: 60px;
-  transition: margin-left 500ms ease-in;
 }
 
-.edit-btn.close {
-  margin-left: 0;
-}
 .edit-btn > svg {
   width: 36px;
   height: 36px;
@@ -101,11 +121,11 @@ aside {
   width: 300px;
   height: 100%;
   grid-column: 1/2;
-  transition: all 0.5s ease-in;
+  overflow-y: auto;
 }
 
-.edit-panel.close {
-  width: 0;
+aside.close + main {
+  margin-left: 0px;
 }
 
 /* resume component styling */

@@ -77,10 +77,12 @@ function App() {
 
   return(<div className='app'>
     <Header></Header>
+    <div className='app-body'>
     <SideBar personalInfo={personalInfo} experiences={experiences} educations={educations} skills={skills} contact={contact} onChange={onChange} contactOnChange={contactOnChange} addEdu={addEdu} addExp={addExp} addSkill={addSkill} deleteEdu={deleteEdu} deleteExp={deleteExp} deleteSkill={deleteSkill} editEdu={editEdu} editExp={editExp}></SideBar>
     <Main>
       <Resume personalInfo={personalInfo} experiences={experiences} educations={educations} skills={skills} contact={contact}></Resume>
     </Main>
+    </div>
     </div>)
 }
 
